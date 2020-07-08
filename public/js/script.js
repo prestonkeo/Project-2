@@ -1,4 +1,4 @@
-$(function () {
+$(document).ready(function () {
 	let title = ''
 	let body = ''
 
@@ -26,8 +26,8 @@ $(function () {
 		$.ajax("/api", {
 			type: "POST",
 			data: {
-				title: title,
-				body: body
+				"title": title,
+				"body": body
 			}
 		}).then(response => {
 			console.log(response)
