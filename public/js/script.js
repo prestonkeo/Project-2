@@ -23,6 +23,8 @@ $(function () {
 			url: "/api"
 		}).then(posts => {
 			console.log(posts)
+			
+			$("#blogPost").empty()
 
 			// append new node for each post
 			posts.forEach(post => {
@@ -35,21 +37,19 @@ $(function () {
 				} = post
 
 				// format post as bootstrap card
-				const card = `
-					<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">${title}</h5>
-								<p class="card-text">${body}</p>
-								<p class="card-text"><small>${moment(createdAt).fromNow()}</small></p>
-							</div>
-						</div>
-					</div>
-				`
-				console.log(card)
+				
+				const listItem = `
+					<li>
+						<a href="#">
+							<h5>${title}</h5>
+							<p>${moment(createdAt).fromNow()}</p>
+							<p> ${body}</p>
+						</a>
+					</li>
+				`;
 
 				// append card to dom
-				$("#blogPosts").append(card)
+				$("#blogPosts").append(listItem)
 			})
 		}).catch(err => console.log(err))
 	}
