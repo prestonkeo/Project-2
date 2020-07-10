@@ -27,6 +27,6 @@ require("./routes/view-routes.js")(app);
 // start the server
 db.sequelize.sync({ force: true }).then(function () {
 	app.listen(PORT, function () {
-		console.log("App listening on PORT " + PORT);
+		console.log("App listening at http://localhost:" + PORT);
 	});
 });

@@ -4,6 +4,7 @@
   "description": "A blogging app made using Handlebars and an Express server backed by a MySQL database with a Sequelize ORM and deployed on Heroku: [deployed_url_goes_here](*)",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server.js",
     "start": "node server.js"
   },
   "repository": {
@@ -24,5 +25,7 @@
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

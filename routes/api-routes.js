@@ -1,11 +1,10 @@
 // require our models
 var db = require("../models");
-// ** const { reset } = require("nodemon");
 
 // routes
 module.exports = function (app) {
-	// @route:  GET /api
-	// @desc:   Return all blog posts
+	// @route: GET /api
+	// @desc:  Return all blog posts
 	app.get("/api", function (req, res) {
 		db.Post.findAll({})
 			.then(function (result) {
@@ -13,8 +12,8 @@ module.exports = function (app) {
 			});
 	});
 
-	// @route:  POST /api
-	// @desc:   Create a new blog post
+	// @route: POST /api
+	// @desc:  Create a new blog post
 	app.post("/api", function (req, res) {
 		// destructure request
 		var title = req.body.title;
