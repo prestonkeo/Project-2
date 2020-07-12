@@ -1,14 +1,18 @@
-// routes
-module.exports = function (app) {
-	// @route: GET /
-	// @desc:  Render index template
-	app.get("/", function (req, res) {
-		res.render("index");
-	});
+const Router = require('koa-router');
 
-	// @route: GET /posts
-	// @desc:  Return posts template
-	app.get("/posts", function (req, res) {
-		res.render("posts");
-	});
-};
+const router = new Router();
+
+
+// @route: GET /
+// @desc:  Render index template
+router.get("/", async (ctx) => {
+	await ctx.render("index", ctx.data);
+});
+
+// @route: GET /posts
+// @desc:  Return posts template
+router.get("/posts", async (ctx) => {
+	await ctx.render("posts", ctx.data);
+});
+
+module.exports = router;

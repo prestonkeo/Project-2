@@ -1,29 +1,36 @@
 // import dependencies
-var express = require('express');
-var exphbs = require("express-handlebars");
+const Koa = require('koa');
+const bodyParser = require('koa-bodyparser');
+const views = require('koa-views');
+const Router = require('koa-router');
+const koaStatic = require('koa-static');
+const koaTemplate = require('./middleware/koa-template');
 
-// setup the express app
-var app = express();
+// setup the koa app
+const app = new Koa();
 var PORT = process.env.PORT || 8080;
 
 // require models for syncing
 var db = require("./models");
 
 // configure middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyParser())
+app.use(koaStatic('public'))
+app.use(koaTemplate('main'))
 
-// define static directory
-app.use(express.static("public"));
 
-// setup handelbars
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+// setup handlebars
+app.use(views(`${__dirname}/views`, 
+	{ extension: 'handlebars'}, 
+	{ map: { handlebars: 'handlebars' } }
+))
 
 // routes
-require("./routes/api-routes.js")(app);
-require("./routes/view-routes.js")(app);
+const apiRouter = require("./routes/api-routes.js");
+const viewRouter = require("./routes/view-routes.js");
 
+app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
+app.use(viewRouter.routes()).use(viewRouter.allowedMethods());
 // start the server
 db.sequelize.sync({ force: true }).then(function () {
 	app.listen(PORT, function () {
