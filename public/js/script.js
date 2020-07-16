@@ -4,9 +4,9 @@ $(function () {
 
 	const createPost = payload => {
 		$.ajax({
-			method: "POST",
-			url: "/api",
-			data: payload
+			method: "POST", //this is what method we request.
+			url: "/api", //this is the rout on the server we want to hit
+			data: payload //this is what the server receives as body 
 		}).then(() => {
 			// reset form inputs
 			$("#title").val("")
@@ -19,8 +19,8 @@ $(function () {
 
 	const fetchPosts = () => {
 		$.ajax({
-			method: "GET",
-			url: "/api"
+			method: "GET", // this is what method we request
+			url: "/api" //this is the rout on the server we want to hit
 		}).then(posts => {
 			console.log(posts)
 			
@@ -36,7 +36,7 @@ $(function () {
 					createdAt
 				} = post
 
-				// format post as bootstrap card
+				// format post as note card.
 				
 				const listItem = `
 					<li>
