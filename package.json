@@ -24,7 +24,7 @@
 		"express-handlebars": "^5.0.0",
 		"mysql2": "^2.1.0",
 		"sequelize": "^6.3.0",
-		"handlebars": "^4.7.6",
+		"handlebars": "^4.7.7",
 		"koa": "^2.13.0",
 		"koa-bodyparser": "^4.3.0",
 		"koa-handlebars": "^1.0.0",
